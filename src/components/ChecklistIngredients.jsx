@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-const MAX_INGREDIENTS = 20;
+// const MAX_INGREDIENTS = 20;
 
 export default function ChecklistIngredients({ recipe, setIsDisable }) {
   const [checkedIng, setCheckedIng] = useState({});
   const [pathname, setPathname] = useState('');
 
-  const listOfIngredients = [];
-  for (let i = 1; i <= MAX_INGREDIENTS; i += 1) {
-    listOfIngredients.push(recipe[`strIngredient${i}`]);
-  }
+  const listOfIngredients = Object.keys(recipe)
+    .map((rec) => {
+      if (rec.includes('strIngredient') && recipe[rec] !== '') return recipe[rec];
+      return undefined;
+    }).filter((ingredient) => ingredient !== undefined);
+
+  useMemo(() => listOfIngredients, [listOfIngredients]);
 
   const handleChange = ({ target }) => {
     setCheckedIng((prevState) => ({ ...prevState, [target.name]: target.checked }));
   };
 
-  const checkIfHaveOnLocalStorage = () => {
+  const checkIfHaveOnLocalStorage = useCallback(() => {
     const path = window.location.pathname.split('/')[1];
     const invertPath = path === 'drinks' ? 'meals' : 'drinks';
     setPathname(path);
@@ -30,13 +33,13 @@ export default function ChecklistIngredients({ recipe, setIsDisable }) {
     }
     const { [path]: drinkOrMeal } = inProgressFromLS;
     setCheckedIng({ ...drinkOrMeal[idOfRecipe] });
-  };
+  }, [recipe.idDrink, recipe.idMeal]);
 
   useEffect(() => {
     checkIfHaveOnLocalStorage();
-  }, []);
+  }, [checkIfHaveOnLocalStorage]);
 
-  const updateLocalStorage = () => {
+  const updateLocalStorage = useCallback(() => {
     const inProgressFromLS = JSON.parse(localStorage.getItem('inProgressRecipes'));
     const idOfRecipe = recipe.idMeal ? recipe.idMeal : recipe.idDrink;
     const toSaveOnLS = {
@@ -49,19 +52,19 @@ export default function ChecklistIngredients({ recipe, setIsDisable }) {
       },
     };
     localStorage.setItem('inProgressRecipes', JSON.stringify(toSaveOnLS));
-  };
+  }, [checkedIng, pathname, recipe.idDrink, recipe.idMeal]);
 
-  const checkButtonFinish = () => {
+  const checkButtonFinish = useCallback(() => {
     const verifyAllChecked = Object.values(checkedIng).every((ing) => ing);
     const sizeOfCheckedIng = Object.values(checkedIng).length;
     const sizeOfIngredients = listOfIngredients.filter((ing) => ing).length;
     setIsDisable(verifyAllChecked && sizeOfCheckedIng === sizeOfIngredients);
-  };
+  }, [checkedIng, listOfIngredients, setIsDisable]);
 
   useEffect(() => {
     checkButtonFinish();
     updateLocalStorage();
-  }, [checkedIng]);
+  }, [checkButtonFinish, checkedIng, updateLocalStorage]);
 
   return (
     listOfIngredients

@@ -31,30 +31,43 @@ export default function Login() {
   }, [emailInput, passInput]);
 
   return (
-    <section className="login-section">
-      <div className="background-div">
-        <span style={ { display: 'none' } }>BACKGROUND</span>
-      </div>
-      <div className="form-div">
-        <form>
-          <h1>App de Receitas</h1>
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
-              onChange={ onInputChange }
-              value={ emailInput }
-              id="email"
-              data-testid="email-input"
-            />
-            <input
-              type="password"
-              placeholder="Senha"
-              onChange={ onInputChange }
-              value={ passInput }
-              data-testid="password-input"
-            />
-          </div>
+    <section
+      className="container flex flex-col h-full w-full justify-center items-center m-auto"
+    >
+      <div
+        className="md:w-3/5 w-full h-96 flex
+        flex-col items-center justify-center
+        bg-cyan-900 rounded-xl shadow-lg
+        shadow-cyan-500/50"
+      >
+        <h1
+          className="text-cyan-300 tracking-wide uppercase font-bold"
+        >
+          App de Receitas
+        </h1>
+        <form
+          className="
+          flex flex-col w-10/12 h-56
+          justify-center items-center
+           mx-auto"
+        >
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={ onInputChange }
+            value={ emailInput }
+            id="email"
+            data-testid="email-input"
+            className="input-login"
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={ onInputChange }
+            value={ passInput }
+            data-testid="password-input"
+            className="input-login"
+          />
           <input
             type="submit"
             onClick={ (e) => {
@@ -67,6 +80,7 @@ export default function Login() {
             disabled={ isDisabled }
             value="Login"
             data-testid="login-submit-btn"
+            className="input-login cursor-pointer bg-cyan-300 text-cyan-50"
           />
         </form>
       </div>

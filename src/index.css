@@ -1,13 +1,79 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply bg-cyan-600 w-screen h-screen p-2;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  .input-login {
+    @apply rounded-xl w-full h-12 pl-2 mt-3 shadow-lg shadow-cyan-500/50;
+  }
 }
+
+/* .meals {
+  align-items: center;
+  background: #0fa36b;
+  color: #464646;
+  display: flex;
+  flex-direction: column;w
+  font-family: sans-serif;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.carrosel {
+  display: flex;
+  height: 220px;
+  margin: auto;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.carrossel-card {
+  margin: auto 10px;
+}
+
+footer button > img {
+  width: 40px;
+}
+
+.carrossel-card img {
+  height: 160px;
+}
+
+.carrossel-card p {
+  margin: 0;
+}
+
+.start-recipe-btn {
+  border-radius: 50%;
+  bottom: 0;
+  font-size: 10px;
+  height: 50px;
+  position: fixed;
+  right: 15px;
+  width: 50px;
+  z-index: 1;
+}
+
+.ingredientDone {
+  text-decoration: line-through solid black;
+}
+
+footer {
+  background-color: goldenrod;
+  bottom: 0;
+  display: inline-flex;
+  height: 65px;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+}
+
+footer button {
+  background-color: transparent;
+  border: none;
+} */

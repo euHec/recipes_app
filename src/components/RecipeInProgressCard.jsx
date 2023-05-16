@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import shareIconSvg from '../images/shareIcon.svg';
 import favIconSvgWhite from '../images/whiteHeartIcon.svg';
@@ -65,12 +65,12 @@ export default function RecipeInProgressCard({ recipe }) {
     history.push('/done-recipes');
   };
 
-  const checkIfIsFav = () => {
+  const checkIfIsFav = useCallback(() => {
     const fromLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const id = recipe.idDrink ? recipe.idDrink : recipe.idMeal;
     const verifyFav = fromLS.some((recip) => id === recip.id);
     setIsFavRecipe(verifyFav);
-  };
+  }, [recipe.idDrink, recipe.idMeal]);
 
   useEffect(() => {
     const favRecipesfromLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -82,7 +82,7 @@ export default function RecipeInProgressCard({ recipe }) {
       localStorage.setItem('doneRecipes', JSON.stringify([]));
     }
     checkIfIsFav();
-  }, []);
+  }, [checkIfIsFav]);
 
   return (
     <section>

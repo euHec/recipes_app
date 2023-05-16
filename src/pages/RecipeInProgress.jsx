@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import customFetch from '../helpers/customFetch';
 import RecipeInProgressCard from '../components/RecipeInProgressCard';
 
@@ -16,16 +16,16 @@ export default function RecipeInProgress({ match }) {
     };
   };
 
-  const doFetch = async () => {
+  const doFetch = useCallback(async () => {
     const { endPoint } = getEndPoint(match.path, match.params.id);
     const data = await customFetch(endPoint);
     const dataValue = Object.values(data);
     setRecipe(dataValue[0]);
-  };
+  }, [match.params.id, match.path]);
 
   useEffect(() => {
     doFetch();
-  }, []);
+  }, [doFetch]);
 
   return (
     recipe.map((recip, ind) => <RecipeInProgressCard key={ ind } recipe={ recip } />)
