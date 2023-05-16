@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import logo from '../images/logo Recipes App.svg'
 
 export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -34,8 +35,9 @@ export default function Login() {
     <section
       className="container flex flex-col h-full w-full justify-center items-center m-auto"
     >
+      <img src={ logo } alt="logo app" />
       <div
-        className="md:w-3/5 w-full h-96 flex
+        className="md:w-3/5 w-full h-2/4 flex
         flex-col items-center justify-center
         bg-cyan-900 rounded-xl shadow-lg
         shadow-cyan-500/50"
@@ -80,7 +82,8 @@ export default function Login() {
             disabled={ isDisabled }
             value="Login"
             data-testid="login-submit-btn"
-            className="input-login cursor-pointer bg-cyan-300 text-cyan-50"
+            className="disabled:bg-cyan-950 input-login
+            cursor-pointer bg-cyan-300 text-cyan-50 uppercase"
           />
         </form>
       </div>
