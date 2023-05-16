@@ -13,8 +13,13 @@ import { RecipesContext } from './context/RecipesContext';
 import RecipeInProgress from './pages/RecipeInProgress';
 
 function App() {
+  const [toggleShowSearch, setToggleShowSearch] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const ContextValue = useMemo(() => ({ recipes, setRecipes }), [recipes]);
+  const ContextValue = useMemo(() => ({
+    recipes,
+    setRecipes,
+    toggleShowSearch,
+    setToggleShowSearch }), [recipes, toggleShowSearch]);
   return (
     <Switch>
       <RecipesContext.Provider value={ ContextValue }>

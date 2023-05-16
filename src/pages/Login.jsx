@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import logo from '../images/logo Recipes App.svg'
+import logo from '../images/logo Recipes App.svg';
 
 export default function Login() {
   const [isDisabled, setIsDisabled] = useState(true);

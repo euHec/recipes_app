@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext } from 'react';
 import profileIconSvg from '../images/profileIcon.svg';
 import searchIconSvg from '../images/searchIcon.svg';
-import SearchBar from './SearchBar';
+import { RecipesContext } from '../context/RecipesContext';
 
 export default function Header({ pageTitle, showSearchIcon = false }) {
-  const [toggleShowSearch, setToggleShowSearch] = useState(false);
+  const { setToggleShowSearch } = useContext(RecipesContext);
   const history = useHistory();
   return (
-    <header>
+    <header className="w-full flex justify-around">
       <button
         data-testid="profile-top-btn"
         onClick={ () => { history.push('/profile'); } }
@@ -37,10 +37,6 @@ export default function Header({ pageTitle, showSearchIcon = false }) {
             </button>
 
           )
-      }
-      {
-        toggleShowSearch
-          && <SearchBar />
       }
     </header>
   );
