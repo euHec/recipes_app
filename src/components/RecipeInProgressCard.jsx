@@ -62,7 +62,7 @@ export default function RecipeInProgressCard({ recipe }) {
       tags,
     };
     localStorage.setItem('doneRecipes', JSON.stringify([...fromLS, toSaveOnLS]));
-    history.push('/done-recipes');
+    history.push('/recipes_app/done-recipes');
   };
 
   const checkIfIsFav = useCallback(() => {

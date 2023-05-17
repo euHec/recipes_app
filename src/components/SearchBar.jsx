@@ -14,9 +14,9 @@ export default function SearchBar() {
       const { idMeal } = recipes[0];
       if (!idMeal) {
         const { idDrink } = recipes[0];
-        push(`${pathname}/${idDrink}`);
+        push(`/recipes_app${pathname}/${idDrink}`);
       } else {
-        push(`${pathname}/${idMeal}`);
+        push(`/recipes_app${pathname}/${idMeal}`);
       }
     }
   }, [location, push, recipes]);

@@ -12,13 +12,13 @@ export default function Footer() {
       left-0 bg-cyan-200 flex justify-around
       items-center rounded-t-full"
     >
-      <button onClick={ () => push('/drinks') }>
+      <button onClick={ () => push('/recipes_app/drinks') }>
         <BiDrink
           data-testid="drinks-bottom-btn"
           className="text-5xl text-cyan-800 "
         />
       </button>
-      <button onClick={ () => push('/meals') }>
+      <button onClick={ () => push('/recipes_app/meals') }>
         <GiKnifeFork
           data-testid="meals-bottom-btn"
           className="text-5xl text-cyan-800 "

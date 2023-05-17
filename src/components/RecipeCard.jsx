@@ -7,7 +7,11 @@ export default function RecipeCard({ recipe, index }) {
       data-testid={ `${index}-recipe-card` }
     >
       <Link
-        to={ recipe.idDrink ? `/drinks/${recipe.idDrink}` : `/meals/${recipe.idMeal}` }
+        to={
+          recipe.idDrink
+            ? `/recipes_app/drinks/${recipe.idDrink}`
+            : `/recipes_app/meals/${recipe.idMeal}`
+        }
         className="no-underline"
       >
         <div className="bg-white p-0 w-36 rounded-xl">

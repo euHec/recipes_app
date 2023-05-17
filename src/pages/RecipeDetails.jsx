@@ -228,8 +228,8 @@ export default function RecipeDetails() {
             className="start-recipe-btn"
             onClick={
               pathname?.includes('meals')
-                ? () => push(`/meals/${item[0].idMeal}/in-progress`)
-                : () => push(`/drinks/${item[0].idDrink}/in-progress`)
+                ? () => push(`/recipes_app/meals/${item[0].idMeal}/in-progress`)
+                : () => push(`/recipes_app/drinks/${item[0].idDrink}/in-progress`)
             }
           >
             {

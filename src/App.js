@@ -23,16 +23,56 @@ function App() {
   return (
     <Switch>
       <RecipesContext.Provider value={ ContextValue }>
-        <Route exact path="/" component={ Login } />
-        <Route exact path="/meals" component={ Meals } />
-        <Route exact path="/meals/:id" component={ RecipeDetails } />
-        <Route exact path="/meals/:id/in-progress" component={ RecipeInProgress } />
-        <Route exact path="/drinks" component={ Drinks } />
-        <Route exact path="/drinks/:id" component={ RecipeDetails } />
-        <Route exact path="/drinks/:id/in-progress" component={ RecipeInProgress } />
-        <Route exact path="/profile" component={ Profile } />
-        <Route exact path="/done-recipes" component={ DoneRecipes } />
-        <Route exact path="/favorite-recipes" component={ FavoriteRecipes } />
+        <Route
+          exact
+          path="/recipes_app/"
+          component={ Login }
+        />
+        <Route
+          exact
+          path="/recipes_app/meals"
+          component={ Meals }
+        />
+        <Route
+          exact
+          path="/recipes_app/meals/:id"
+          component={ RecipeDetails }
+        />
+        <Route
+          exact
+          path="/recipes_app/meals/:id/in-progress"
+          component={ RecipeInProgress }
+        />
+        <Route
+          exact
+          path="/recipes_app/drinks"
+          component={ Drinks }
+        />
+        <Route
+          exact
+          path="/recipes_app/drinks/:id"
+          component={ RecipeDetails }
+        />
+        <Route
+          exact
+          path="/recipes_app/drinks/:id/in-progress"
+          component={ RecipeInProgress }
+        />
+        <Route
+          exact
+          path="/recipes_app/profile"
+          component={ Profile }
+        />
+        <Route
+          exact
+          path="/recipes_app/done-recipes"
+          component={ DoneRecipes }
+        />
+        <Route
+          exact
+          path="/recipes_app/favorite-recipes"
+          component={ FavoriteRecipes }
+        />
       </RecipesContext.Provider>
     </Switch>
   );

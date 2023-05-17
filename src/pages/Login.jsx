@@ -77,7 +77,7 @@ export default function Login() {
               localStorage.setItem('mealsToken', 1);
               localStorage.setItem('cocktailsToken', 1);
               localStorage.setItem('user', JSON.stringify({ email: emailInput }));
-              push('/meals');
+              push('/recipes_app/meals');
             } }
             disabled={ isDisabled }
             value="Login"

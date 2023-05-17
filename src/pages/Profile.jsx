@@ -11,20 +11,20 @@ export default function Profile() {
       <p data-testid="profile-email">{user?.email}</p>
       <button
         data-testid="profile-done-btn"
-        onClick={ () => { push('/done-recipes'); } }
+        onClick={ () => { push('/recipes_app/done-recipes'); } }
       >
         Done Recipes
       </button>
       <button
         data-testid="profile-favorite-btn"
-        onClick={ () => { push('/favorite-recipes'); } }
+        onClick={ () => { push('/recipes_app/favorite-recipes'); } }
       >
         Favorite Recipes
       </button>
       <button
         data-testid="profile-logout-btn"
         onClick={ () => {
-          push('/');
+          push('/recipes_app/');
           localStorage.clear();
         } }
       >

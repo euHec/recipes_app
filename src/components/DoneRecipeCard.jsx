@@ -18,7 +18,7 @@ export default function DoneRecipeCard({ recipe, index }) {
 
   return (
     <li>
-      <Link to={ `/${type}s/${id}` }>
+      <Link to={ `/recipes_app/${type}s/${id}` }>
         <img
           style={ { width: '300px' } }
           src={ image }
@@ -30,7 +30,7 @@ export default function DoneRecipeCard({ recipe, index }) {
         {`${nationality} - ${category} ${alcoholicOrNot || ''}`}
       </p>
       <Link
-        to={ `/${type}s/${id}` }
+        to={ `/recipes_app/${type}s/${id}` }
         data-testid={ `${index}-horizontal-name` }
       >
         {name}
