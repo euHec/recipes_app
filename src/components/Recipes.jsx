@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { GiKnifeFork } from 'react-icons/gi';
 import RecipeCard from './RecipeCard';
 import { RecipesContext } from '../context/RecipesContext';
 import FilterButton from './FilterButton';
@@ -62,24 +63,30 @@ export default function Recipes() {
 
   return (
     <div>
-      <div>
+      <div className="w-full m-auto flex items-center justify-around">
+        <div className="div-button">
+          <button
+            data-testid="All-category-filter"
+            onClick={ clearCategory }
+            className="button-filter"
+          >
+            <GiKnifeFork />
+          </button>
+          <p className="text-cyan-50">All</p>
+        </div>
         {
           dataFilters
             .filter((filter, ind) => ind < MAX_FILTERS)
-            .map((filter, ind) => (<FilterButton
-              filter={ filter }
-              key={ ind }
-              handleCategory={ filteredDataRecipes.length
-                ? clearCategory : handleCategory }
-            />))
+            .map((filter, ind) => (
+              <FilterButton
+                filter={ filter }
+                key={ ind }
+                indice={ ind }
+                handleCategory={ filteredDataRecipes.length
+                  ? clearCategory : handleCategory }
+              />))
         }
       </div>
-      <button
-        data-testid="All-category-filter"
-        onClick={ clearCategory }
-      >
-        Limpar filtro
-      </button>
       {
         !recipes.length
           && (

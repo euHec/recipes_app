@@ -22,57 +22,78 @@ export default function SearchBar() {
   }, [location, push, recipes]);
 
   return (
-    <form onSubmit={ (e) => e.preventDefault() }>
-      <input
-        data-testid="search-input"
-        type="text"
-        value={ searchValue }
-        onChange={ ({ target }) => {
-          if (searchType === 'first-letter' && target.value.length > 1) {
-            return global.alert('Your search must have only 1 (one) character');
-          }
-          setSearchValue(target.value);
-        } }
-      />
-      <label>
-        Ingredientes
+    <form
+      onSubmit={ (e) => e.preventDefault() }
+      className="flex flex-col items-center justify-center"
+    >
+      <div className="w-full">
         <input
-          type="radio"
-          data-testid="ingredient-search-radio"
-          name="search-bar"
-          value="ingredients"
-          onClick={ ({ target }) => {
-            setSearchValue('');
-            setSearchType(target.value);
+          data-testid="search-input"
+          type="text"
+          value={ searchValue }
+          onChange={ ({ target }) => {
+            if (searchType === 'first-letter' && target.value.length > 1) {
+              return global.alert('Your search must have only 1 (one) character');
+            }
+            setSearchValue(target.value);
           } }
+          className="rounded-xl w-full h-12 mb-2 pl-2"
+          placeholder="O que deseja buscar?"
         />
-      </label>
-      <label>
-        Nome
-        <input
-          type="radio"
-          data-testid="name-search-radio"
-          name="search-bar"
-          value="name"
-          onClick={ ({ target }) => {
-            setSearchValue('');
-            setSearchType(target.value);
-          } }
-        />
-      </label>
-      <label>
-        Primeira palavra
-        <input
-          type="radio"
-          data-testid="first-letter-search-radio"
-          name="search-bar"
-          value="first-letter"
-          onClick={ ({ target }) => {
-            setSearchValue('');
-            setSearchType(target.value);
-          } }
-        />
-      </label>
+      </div>
+      <div className="w-full h-8 flex items-center justify-center">
+        <label
+          className="text-cyan-100
+          flex flex-col items-center justify-around h-9 mt-3"
+        >
+          <input
+            className="w-14 mx-4"
+            type="radio"
+            data-testid="ingredient-search-radio"
+            name="search-bar"
+            value="ingredients"
+            onClick={ ({ target }) => {
+              setSearchValue('');
+              setSearchType(target.value);
+            } }
+          />
+          Ingredientes
+        </label>
+        <label
+          className="text-cyan-100
+          flex flex-col items-center justify-center h-9 mt-3"
+        >
+          <input
+            className="w-14 mx-4"
+            type="radio"
+            data-testid="name-search-radio"
+            name="search-bar"
+            value="name"
+            onClick={ ({ target }) => {
+              setSearchValue('');
+              setSearchType(target.value);
+            } }
+          />
+          Nome
+        </label>
+        <label
+          className="text-cyan-100
+          flex flex-col items-center justify-center h-9 mt-3"
+        >
+          <input
+            className="w-14 mx-4"
+            type="radio"
+            data-testid="first-letter-search-radio"
+            name="search-bar"
+            value="first-letter"
+            onClick={ ({ target }) => {
+              setSearchValue('');
+              setSearchType(target.value);
+            } }
+          />
+          Primeira palavra
+        </label>
+      </div>
       <button
         data-testid="exec-search-btn"
         onClick={ async () => {
@@ -90,6 +111,7 @@ export default function SearchBar() {
           const newData = data.slice(0, maxCards);
           setRecipes(newData);
         } }
+        className="rounded-xl bg-cyan-300 w-full h-12 pl-2 mt-4 mb-4"
       >
         Buscar
       </button>

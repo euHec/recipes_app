@@ -4,12 +4,6 @@ import { Link } from 'react-router-dom';
 export default function RecipeCard({ recipe, index }) {
   return (
     <li
-      style={
-        { display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          padding: '1rem' }
-      }
       data-testid={ `${index}-recipe-card` }
     >
       <Link
