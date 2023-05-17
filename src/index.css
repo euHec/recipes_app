@@ -14,7 +14,8 @@
     @apply flex flex-col justify-center items-center;
   }
   .button-filter {
-    @apply bg-white w-14 h-14 flex justify-center items-center rounded-full text-cyan-600 text-4xl;
+    @apply bg-white w-14 h-14 rounded-full text-cyan-600 text-4xl;
+    @apply flex justify-center items-center;
     @apply border-solid border-2 border-cyan-100;
   }
 }

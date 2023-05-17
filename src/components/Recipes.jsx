@@ -10,7 +10,7 @@ const MAX_CARDS = 12;
 const MAX_FILTERS = 5;
 
 export default function Recipes() {
-  const { recipes } = useContext(RecipesContext);
+  const { recipes, toggleShowSearch } = useContext(RecipesContext);
   const [dataRecipes, setDataRecipes] = useState([]);
   const [dataFilters, setDataFilters] = useState([]);
   const [filteredDataRecipes, setFilteredDataRecipes] = useState([]);
@@ -62,48 +62,59 @@ export default function Recipes() {
   }, [fetchDrinksOrMeals, fetchFiltersDrinksOrMeals]);
 
   return (
-    <div>
-      <div className="w-full m-auto flex items-center justify-around">
-        <div className="div-button">
-          <button
-            data-testid="All-category-filter"
-            onClick={ clearCategory }
-            className="button-filter"
+    <>
+      {
+        !toggleShowSearch && (
+          <div
+            className="w-full pt-4 fixed top-28 left-0
+            m-auto flex items-center justify-around bg-cyan-600 z-auto"
           >
-            <GiKnifeFork />
-          </button>
-          <p className="text-cyan-50">All</p>
-        </div>
+            <div className="div-button">
+              <button
+                data-testid="All-category-filter"
+                onClick={ clearCategory }
+                className="button-filter"
+              >
+                <GiKnifeFork />
+              </button>
+              <p className="text-cyan-50">All</p>
+            </div>
+            {
+              dataFilters
+                .filter((filter, ind) => ind < MAX_FILTERS)
+                .map((filter, ind) => (
+                  <FilterButton
+                    filter={ filter }
+                    key={ ind }
+                    indice={ ind }
+                    handleCategory={ filteredDataRecipes.length
+                      ? clearCategory : handleCategory }
+                  />))
+            }
+          </div>
+        )
+      }
+      <div
+        className="w-full h-full m-auto flex
+        justify-around overflow-y-scroll"
+      >
         {
-          dataFilters
-            .filter((filter, ind) => ind < MAX_FILTERS)
-            .map((filter, ind) => (
-              <FilterButton
-                filter={ filter }
-                key={ ind }
-                indice={ ind }
-                handleCategory={ filteredDataRecipes.length
-                  ? clearCategory : handleCategory }
-              />))
+          !recipes.length
+            && (
+              <ul className="flex flex-wrap justify-around">
+                {
+                  (filteredDataRecipes.length ? filteredDataRecipes : dataRecipes)
+                    .filter((filter, ind) => ind < MAX_CARDS)
+                    .map((recipe, ind) => (<RecipeCard
+                      recipe={ recipe }
+                      index={ ind }
+                      key={ ind }
+                    />))
+                }
+              </ul>
+            )
         }
       </div>
-      {
-        !recipes.length
-          && (
-            <ul>
-              {
-                (filteredDataRecipes.length ? filteredDataRecipes : dataRecipes)
-                  .filter((filter, ind) => ind < MAX_CARDS)
-                  .map((recipe, ind) => (<RecipeCard
-                    recipe={ recipe }
-                    index={ ind }
-                    key={ ind }
-                  />))
-              }
-            </ul>
-          )
-      }
-    </div>
-
+    </>
   );
 }

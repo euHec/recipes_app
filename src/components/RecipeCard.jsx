@@ -8,16 +8,22 @@ export default function RecipeCard({ recipe, index }) {
     >
       <Link
         to={ recipe.idDrink ? `/drinks/${recipe.idDrink}` : `/meals/${recipe.idMeal}` }
+        className="no-underline"
       >
-        <h4 data-testid={ `${index}-card-name` }>
-          {recipe.strDrink ? recipe.strDrink : recipe.strMeal}
-        </h4>
-        <img
-          style={ { width: '300px' } }
-          src={ recipe.strDrinkThumb ? recipe.strDrinkThumb : recipe.strMealThumb }
-          alt={ recipe.strDrinkThumb ? recipe.strDrinkThumb : recipe.strMealThumb }
-          data-testid={ `${index}-card-img` }
-        />
+        <div className="bg-white p-0 w-36 rounded-xl">
+          <img
+            src={ recipe.strDrinkThumb ? recipe.strDrinkThumb : recipe.strMealThumb }
+            alt={ recipe.strDrinkThumb ? recipe.strDrinkThumb : recipe.strMealThumb }
+            data-testid={ `${index}-card-img` }
+            className="w-full rounded-t-xl"
+          />
+          <h4
+            data-testid={ `${index}-card-name` }
+            className="text-center text-base text-cyan-800"
+          >
+            {recipe.strDrink ? recipe.strDrink : recipe.strMeal}
+          </h4>
+        </div>
       </Link>
     </li>
   );

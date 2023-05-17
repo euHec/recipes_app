@@ -10,14 +10,14 @@ export default function Meals() {
   return (
     <>
       <Header pageTitle="Meals" showSearchIcon />
-      <div className="mt-32">
-        {
-          toggleShowSearch
-            && <SearchBar />
-        }
+      {
+        toggleShowSearch
+          && <SearchBar />
+      }
+      <div className=" left-0 p-2 fixed top-72 w-full h-3/5">
         <Recipes />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 }

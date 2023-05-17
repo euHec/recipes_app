@@ -24,7 +24,8 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={ (e) => e.preventDefault() }
-      className="flex flex-col items-center justify-center"
+      className="flex fixed p-2 top-28 w-full bg-cyan-600 left-0
+        flex-col items-center justify-center"
     >
       <div className="w-full">
         <input
@@ -111,7 +112,7 @@ export default function SearchBar() {
           const newData = data.slice(0, maxCards);
           setRecipes(newData);
         } }
-        className="rounded-xl bg-cyan-300 w-full h-12 pl-2 mt-4 mb-4"
+        className="rounded-xl bg-cyan-300 w-full h-12 mt-4"
       >
         Buscar
       </button>
